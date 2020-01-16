@@ -64,4 +64,4 @@ jobs:
 
     - name: Run tests
       run: |
-        cargo test --verbose -j1
+        cargo test --verbose
