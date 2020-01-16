@@ -29,4 +29,4 @@ jobs:
 
     - name: Run tests
       run: |
-        cargo test --verbose -j1 -- --nocapture
+        cargo test --verbose -j1
