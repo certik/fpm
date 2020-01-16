@@ -32,3 +32,4 @@ and the user API is inspired by Cargo. Here is Cargo project layout:
 https://doc.rust-lang.org/cargo/guide/project-layout.html
 
 Trigger
+Trigger
