@@ -53,6 +53,36 @@ fn test_help() {
             predicate::str::contains("--help       Prints help information"));
 }
 
+#[test]
+fn test_help2() {
+    let mut cmd = Command::cargo_bin("fpm").unwrap();
+    cmd.arg("--help");
+    cmd.assert()
+        .success2()
+        .stdout(
+            predicate::str::contains("--help       Prints help information"));
+}
+
+#[test]
+fn test_help3() {
+    let mut cmd = Command::cargo_bin("fpm").unwrap();
+    cmd.arg("--help");
+    cmd.assert()
+        .success2()
+        .stdout(
+            predicate::str::contains("--help       Prints help information"));
+}
+
+#[test]
+fn test_help4() {
+    let mut cmd = Command::cargo_bin("fpm").unwrap();
+    cmd.arg("--help");
+    cmd.assert()
+        .success2()
+        .stdout(
+            predicate::str::contains("--help       Prints help information"));
+}
+
 
 #[test]
 fn test_1() {
