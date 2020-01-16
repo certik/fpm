@@ -3,7 +3,7 @@
 set -ex
 
 giturl=git@github.com:certik/fpm.git
-branch=repr
+branch=repr2
 
 for i in {1..20}
 do
