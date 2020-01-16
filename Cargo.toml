@@ -5,10 +5,3 @@ authors = ["Ondřej Čertík <ondrej@certik.us>"]
 edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
-[dependencies]
-structopt = "0.3.7"
-
-[dev-dependencies]
-assert_cmd = "0.10"
-predicates = "1"
