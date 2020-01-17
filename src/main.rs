@@ -89,16 +89,5 @@ fn run() {
 }
 
 fn main() {
-    let args = Cli::from_args();
-    println!("{:?}", args);
-    if args.command == "build" {
-        println!("Command: build");
-        build();
-    } else if args.command == "run" {
-        println!("Command: run");
-        build();
-        run();
-    } else {
-        panic!("Unknown command");
-    }
+    println!("Command: --help");
 }
