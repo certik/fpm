@@ -45,12 +45,12 @@ impl Success2 for Assert {
 
 #[test]
 fn test_help() {
-    let mut cmd = Command::cargo_bin("fpm").unwrap();
+    let mut cmd = Command::new("pwd");
     cmd.arg("--help");
     cmd.assert()
         .success2()
         .stdout(
-            predicate::str::contains("--help       Prints help information"));
+            predicate::str::contains("directory"));
 }
 
 
