@@ -1,169 +1,99 @@
-#[test]
-fn test_run1() {
-    let output = std::process::Command::new("target/debug/fpm")
-                                        .arg("--help")
-                                        .output().unwrap();
-    println!("status: {}", output.status);
-    println!("stdout: {}", String::from_utf8_lossy(&output.stdout));
-    println!("stderr: {}", String::from_utf8_lossy(&output.stderr));
-    if !output.status.success() {
-        panic!("Command failed.")
+use std::process::Command;  // Run programs
+use assert_cmd::prelude::*; // Add methods on commands
+use assert_cmd::assert::Assert;
+#[cfg(unix)]
+use std::os::unix::process::ExitStatusExt;
+use std::process::ExitStatus;
+
+pub trait Success2 {
+    // Our own function with better reporting of errors
+    fn success2(self) -> Self;
+}
+
+#[cfg(unix)]
+fn get_signal(status: ExitStatus) -> Option<i32> {
+    status.signal()
+}
+
+#[cfg(not(unix))]
+fn get_signal(_status: ExitStatus) -> Option<i32> {
+    None
+}
+
+impl Success2 for Assert {
+    fn success2(self) -> Self {
+        if !self.get_output().status.success() {
+            let output = self.get_output();
+            let code = output.status.code();
+            println!("status: {}", output.status);
+            println!("stdout: {}", String::from_utf8_lossy(&output.stdout));
+            println!("stderr: {}", String::from_utf8_lossy(&output.stderr));
+            if cfg!(unix) {
+                if code.is_none() {
+                    let signal = get_signal(output.status).unwrap();
+                    panic!("INTERRUPTED with signal: {}", signal);
+                }
+            }
+            let actual_code = code.unwrap();
+            println!("code: {}", actual_code);
+            panic!("Non zero exit code");
+        }
+        self
     }
 }
 
 #[test]
-fn test_run2() {
-    let output = std::process::Command::new("target/debug/fpm")
-                                        .arg("--help")
-                                        .output().unwrap();
-    println!("status: {}", output.status);
-    println!("stdout: {}", String::from_utf8_lossy(&output.stdout));
-    println!("stderr: {}", String::from_utf8_lossy(&output.stderr));
-    if !output.status.success() {
-        panic!("Command failed.")
-    }
+fn test_help() {
+    let mut cmd = Command::cargo_bin("fpm").unwrap();
+    cmd.arg("--help");
+    cmd.assert()
+        .success2();
 }
 
 #[test]
-fn test_run3() {
-    let output = std::process::Command::new("target/debug/fpm")
-                                        .arg("--help")
-                                        .output().unwrap();
-    println!("status: {}", output.status);
-    println!("stdout: {}", String::from_utf8_lossy(&output.stdout));
-    println!("stderr: {}", String::from_utf8_lossy(&output.stderr));
-    if !output.status.success() {
-        panic!("Command failed.")
-    }
+fn test_help2() {
+    let mut cmd = Command::cargo_bin("fpm").unwrap();
+    cmd.arg("--help");
+    cmd.assert()
+        .success2();
 }
 
 #[test]
-fn test_run4() {
-    let output = std::process::Command::new("target/debug/fpm")
-                                        .arg("--help")
-                                        .output().unwrap();
-    println!("status: {}", output.status);
-    println!("stdout: {}", String::from_utf8_lossy(&output.stdout));
-    println!("stderr: {}", String::from_utf8_lossy(&output.stderr));
-    if !output.status.success() {
-        panic!("Command failed.")
-    }
+fn test_help3() {
+    let mut cmd = Command::cargo_bin("fpm").unwrap();
+    cmd.arg("--help");
+    cmd.assert()
+        .success2();
 }
 
 #[test]
-fn test_run5() {
-    let output = std::process::Command::new("target/debug/fpm")
-                                        .arg("--help")
-                                        .output().unwrap();
-    println!("status: {}", output.status);
-    println!("stdout: {}", String::from_utf8_lossy(&output.stdout));
-    println!("stderr: {}", String::from_utf8_lossy(&output.stderr));
-    if !output.status.success() {
-        panic!("Command failed.")
-    }
+fn test_help4() {
+    let mut cmd = Command::cargo_bin("fpm").unwrap();
+    cmd.arg("--help");
+    cmd.assert()
+        .success2();
 }
 
 #[test]
-fn test_run6() {
-    let output = std::process::Command::new("target/debug/fpm")
-                                        .arg("--help")
-                                        .output().unwrap();
-    println!("status: {}", output.status);
-    println!("stdout: {}", String::from_utf8_lossy(&output.stdout));
-    println!("stderr: {}", String::from_utf8_lossy(&output.stderr));
-    if !output.status.success() {
-        panic!("Command failed.")
-    }
+fn test_help5() {
+    let mut cmd = Command::cargo_bin("fpm").unwrap();
+    cmd.arg("--help");
+    cmd.assert()
+        .success2();
 }
 
 #[test]
-fn test_run7() {
-    let output = std::process::Command::new("target/debug/fpm")
-                                        .arg("--help")
-                                        .output().unwrap();
-    println!("status: {}", output.status);
-    println!("stdout: {}", String::from_utf8_lossy(&output.stdout));
-    println!("stderr: {}", String::from_utf8_lossy(&output.stderr));
-    if !output.status.success() {
-        panic!("Command failed.")
-    }
+fn test_help6() {
+    let mut cmd = Command::cargo_bin("fpm").unwrap();
+    cmd.arg("--help");
+    cmd.assert()
+        .success2();
 }
 
 #[test]
-fn test_run8() {
-    let output = std::process::Command::new("target/debug/fpm")
-                                        .arg("--help")
-                                        .output().unwrap();
-    println!("status: {}", output.status);
-    println!("stdout: {}", String::from_utf8_lossy(&output.stdout));
-    println!("stderr: {}", String::from_utf8_lossy(&output.stderr));
-    if !output.status.success() {
-        panic!("Command failed.")
-    }
+fn test_help7() {
+    let mut cmd = Command::cargo_bin("fpm").unwrap();
+    cmd.arg("--help");
+    cmd.assert()
+        .success2();
 }
-
-#[test]
-fn test_run9() {
-    let output = std::process::Command::new("target/debug/fpm")
-                                        .arg("--help")
-                                        .output().unwrap();
-    println!("status: {}", output.status);
-    println!("stdout: {}", String::from_utf8_lossy(&output.stdout));
-    println!("stderr: {}", String::from_utf8_lossy(&output.stderr));
-    if !output.status.success() {
-        panic!("Command failed.")
-    }
-}
-
-#[test]
-fn test_run10() {
-    let output = std::process::Command::new("target/debug/fpm")
-                                        .arg("--help")
-                                        .output().unwrap();
-    println!("status: {}", output.status);
-    println!("stdout: {}", String::from_utf8_lossy(&output.stdout));
-    println!("stderr: {}", String::from_utf8_lossy(&output.stderr));
-    if !output.status.success() {
-        panic!("Command failed.")
-    }
-}
-
-#[test]
-fn test_run11() {
-    let output = std::process::Command::new("target/debug/fpm")
-                                        .arg("--help")
-                                        .output().unwrap();
-    println!("status: {}", output.status);
-    println!("stdout: {}", String::from_utf8_lossy(&output.stdout));
-    println!("stderr: {}", String::from_utf8_lossy(&output.stderr));
-    if !output.status.success() {
-        panic!("Command failed.")
-    }
-}
-
-#[test]
-fn test_run12() {
-    let output = std::process::Command::new("target/debug/fpm")
-                                        .arg("--help")
-                                        .output().unwrap();
-    println!("status: {}", output.status);
-    println!("stdout: {}", String::from_utf8_lossy(&output.stdout));
-    println!("stderr: {}", String::from_utf8_lossy(&output.stderr));
-    if !output.status.success() {
-        panic!("Command failed.")
-    }
-}
-
-#[test]
-fn test_run13() {
-    let output = std::process::Command::new("target/debug/fpm")
-                                        .arg("--help")
-                                        .output().unwrap();
-    println!("status: {}", output.status);
-    println!("stdout: {}", String::from_utf8_lossy(&output.stdout));
-    println!("stderr: {}", String::from_utf8_lossy(&output.stderr));
-    if !output.status.success() {
-        panic!("Command failed.")
-    }
-}
-
