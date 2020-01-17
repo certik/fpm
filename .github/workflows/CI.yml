@@ -64,4 +64,4 @@ jobs:
 
     - name: Run tests
       run: |
-        cargo test --verbose
+        cargo test || cargo test || cargo test || cargo test || cargo test
