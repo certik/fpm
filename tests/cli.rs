@@ -45,12 +45,47 @@ impl Success2 for Assert {
 
 #[test]
 fn test_help() {
-    let output = std::process::Command::new("pwd")
-                                        .output().unwrap();
-    println!("status: {}", output.status);
-    println!("stdout: {}", String::from_utf8_lossy(&output.stdout));
-    println!("stderr: {}", String::from_utf8_lossy(&output.stderr));
-    if !output.status.success() {
-        panic!("Command failed.")
-    }
+    let mut cmd = Command::cargo_bin("fpm").unwrap();
+    cmd.arg("--help");
+    cmd.assert()
+        .success2()
+        .stdout(
+            predicate::str::contains("--help       Prints help information"));
+}
+
+
+#[test]
+fn test_1() {
+    let mut build = Command::cargo_bin("fpm").unwrap();
+    build.arg("build")
+        .current_dir("tests/1");
+    build.assert()
+        .success2()
+        .stdout(predicate::str::contains("Built target p1")
+                .and(predicate::str::contains("TEST1 OK").not()));
+
+    let mut run = Command::cargo_bin("fpm").unwrap();
+    run.arg("run")
+        .current_dir("tests/1");
+    run.assert()
+        .success2()
+        .stdout(predicate::str::contains("TEST1 OK"));
+}
+
+#[test]
+fn test_2() {
+    let mut build = Command::cargo_bin("fpm").unwrap();
+    build.arg("build")
+        .current_dir("tests/2");
+    build.assert()
+        .success2()
+        .stdout(predicate::str::contains("Built target p1")
+                .and(predicate::str::contains("TEST2 OK").not()));
+
+    let mut run = Command::cargo_bin("fpm").unwrap();
+    run.arg("run")
+        .current_dir("tests/2");
+    run.assert()
+        .success2()
+        .stdout(predicate::str::contains("TEST2 OK"));
 }
