@@ -44,7 +44,8 @@ impl Success2 for Assert {
 
 #[test]
 fn test_help1() {
-    for _i in 1..200 {
+    for i in 1..200 {
+        println!("Iteration: {}", i);
         let mut cmd = Command::new("target/debug/fpm");
         cmd.arg("--help");
         cmd.assert()
