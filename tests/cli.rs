@@ -45,7 +45,8 @@ impl Success2 for Assert {
 
 #[test]
 fn test_help() {
-    let mut cmd = Command::new("pwd");
+    let mut cmd = Command::new("target/debug/fpm");
+    cmd.arg("--help");
     cmd.assert()
         .success2()
         .stdout(
@@ -54,7 +55,8 @@ fn test_help() {
 
 #[test]
 fn test_help2() {
-    let mut cmd = Command::new("pwd");
+    let mut cmd = Command::new("target/debug/fpm");
+    cmd.arg("--help");
     cmd.assert()
         .success2()
         .stdout(
@@ -63,7 +65,8 @@ fn test_help2() {
 
 #[test]
 fn test_help3() {
-    let mut cmd = Command::new("pwd");
+    let mut cmd = Command::new("target/debug/fpm");
+    cmd.arg("--help");
     cmd.assert()
         .success2()
         .stdout(
