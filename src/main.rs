@@ -89,6 +89,7 @@ fn run() {
 }
 
 fn main() {
+    return;
     let args = Cli::from_args();
     println!("{:?}", args);
     if args.command == "build" {
