@@ -60,7 +60,7 @@ jobs:
 
     - name: Build
       run: |
-        cargo test --verbose --no-run
+        cargo test --verbose --no-run && sync && sudo purge
 
     - name: Run tests (Linux, Windows)
       if: contains(matrix.os, 'ubuntu') || contains(matrix.os, 'windows')
