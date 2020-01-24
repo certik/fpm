@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [macos-latest]
         gcc_v: [9] # Version of GFortran we want to use.
         rust: [stable]
     env:
@@ -35,9 +35,6 @@ jobs:
       uses: actions/setup-python@v1 # Use pip to install latest CMake, & FORD/Jin2For, etc.
       with:
         python-version: 3.x
-
-    - name: Set up common
-      run: pip install --upgrade cmake
 
     - name: Install GFortran Linux
       if: contains(matrix.os, 'ubuntu')
@@ -60,7 +57,7 @@ jobs:
 
     - name: Build
       run: |
-        cargo test --verbose --no-run
+        cargo test --verbose --no-run && sync && sudo purge
 
     - name: Run tests (Linux, Windows)
       if: contains(matrix.os, 'ubuntu') || contains(matrix.os, 'windows')
@@ -71,4 +68,79 @@ jobs:
     - name: Run tests (macOS)
       if: contains(matrix.os, 'macos')
       run: |
-        cargo test || cargo test || cargo test
+        ./target/debug/fpm --help
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
+        cargo test
