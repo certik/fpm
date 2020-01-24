@@ -68,6 +68,7 @@ jobs:
     - name: Run tests (macOS)
       if: contains(matrix.os, 'macos')
       run: |
+        ./target/debug/fpm --help
         cargo test
         cargo test
         cargo test
