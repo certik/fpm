@@ -5,7 +5,7 @@ set -ex
 giturl=git@github.com:certik/fpm.git
 branch=repr15
 
-for i in {1..20}
+for i in {1..30}
 do
     echo "Trigger" >> README.md
     git commit -a -m "CI trigger"
