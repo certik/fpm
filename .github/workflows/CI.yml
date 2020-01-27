@@ -68,78 +68,79 @@ jobs:
       if: contains(matrix.os, 'macos')
       run: |
         ./target/debug/fpm --help
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
-        cargo test
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
+        ./target/debug/cli-ab1df1ac9e70d0c9
