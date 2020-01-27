@@ -45,7 +45,7 @@ impl Success2 for Assert {
 
 #[test]
 fn test_help() {
-    let mut cmd = Command::new("./target/debug/fpm");
+    let mut cmd = Command::cargo_bin("fpm").unwrap();
     cmd.arg("--help");
     cmd.assert()
         .success2()
@@ -55,7 +55,7 @@ fn test_help() {
 
 #[test]
 fn test_help2() {
-    let mut cmd = Command::new("./target/debug/fpm");
+    let mut cmd = Command::cargo_bin("fpm").unwrap();
     cmd.arg("--help");
     cmd.assert()
         .success2()
@@ -65,7 +65,7 @@ fn test_help2() {
 
 #[test]
 fn test_help3() {
-    let mut cmd = Command::new("./target/debug/fpm");
+    let mut cmd = Command::cargo_bin("fpm").unwrap();
     cmd.arg("--help");
     cmd.assert()
         .success2()
@@ -75,7 +75,7 @@ fn test_help3() {
 
 #[test]
 fn test_help4() {
-    let mut cmd = Command::new("./target/debug/fpm");
+    let mut cmd = Command::cargo_bin("fpm").unwrap();
     cmd.arg("--help");
     cmd.assert()
         .success2()
@@ -85,7 +85,7 @@ fn test_help4() {
 
 #[test]
 fn test_help5() {
-    let mut cmd = Command::new("./target/debug/fpm");
+    let mut cmd = Command::cargo_bin("fpm").unwrap();
     cmd.arg("--help");
     cmd.assert()
         .success2()
