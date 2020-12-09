@@ -59,6 +59,7 @@ end type
 
 type, extends(fpm_cmd_settings)  :: fpm_build_settings
     logical                      :: list=.false.
+    logical                      :: show_model=.false.
     character(len=:),allocatable :: compiler
     character(len=:),allocatable :: build_name
 end type
@@ -189,6 +190,7 @@ contains
             call set_args( '&
             & --release F &
             & --list F &
+            & --show-model F &
             & --compiler "'//get_env('FPM_COMPILER','gfortran')//'" &
             & --verbose F&
             & --',help_build,version_text)
@@ -200,6 +202,7 @@ contains
             & build_name=val_build,&
             & compiler=val_compiler, &
             & list=lget('list'),&
+            & show_model=lget('show-model'),&
             & verbose=lget('verbose') )
 
         case('new')

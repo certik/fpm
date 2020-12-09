@@ -26,12 +26,13 @@
 !>
 module fpm_model
 use iso_fortran_env, only: int64
-use fpm_strings, only: string_t
+use fpm_strings, only: string_t, str
 use fpm_dependency, only: dependency_tree_t
 implicit none
 
 private
-public :: fpm_model_t, srcfile_t, build_target_t, build_target_ptr
+public :: fpm_model_t, srcfile_t, build_target_t, build_target_ptr, &
+    show_model
 
 public :: FPM_UNIT_UNKNOWN, FPM_UNIT_PROGRAM, FPM_UNIT_MODULE, &
           FPM_UNIT_SUBMODULE, FPM_UNIT_SUBPROGRAM, FPM_UNIT_CSOURCE, &
@@ -193,5 +194,48 @@ type :: fpm_model_t
     type(dependency_tree_t) :: deps
 
 end type fpm_model_t
+
+contains
+
+function pickle_srcfile(source) result(s)
+type(srcfile_t), intent(in) :: source
+character(:), allocatable :: s
+s = "("
+s = s // source%file_name
+s = s // " "
+if (len(source%exe_name) > 0) then
+    s = s // source%exe_name
+else
+    s = s // '""'
+end if
+s = s // " "
+s = s // str(source%unit_scope)
+s = s // " "
+s = s // str(source%unit_type)
+s = s // " ..."
+s = s // ")"
+end function
+
+function pickle_model(model) result(s)
+type(fpm_model_t), intent(in) :: model
+character(:), allocatable :: s
+integer :: i
+s = "("
+s = s // model%package_name
+s = s // " ["
+do i = 1, size(model%sources)
+    s = s // pickle_srcfile(model%sources(i))
+    if (i < size(model%sources)) s = s // " "
+end do
+s = s // "]"
+s = s // " ..."
+s = s // ")"
+end function
+
+subroutine show_model(model)
+! Prints a human readable representation of the Model
+type(fpm_model_t), intent(in) :: model
+print *, pickle_model(model)
+end subroutine
 
 end module fpm_model
