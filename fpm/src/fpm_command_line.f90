@@ -88,6 +88,10 @@ type, extends(fpm_cmd_settings)  :: fpm_update_settings
     logical :: clean
 end type
 
+type, extends(fpm_cmd_settings)  :: fpm_show_settings
+    logical :: model
+end type
+
 character(len=:),allocatable :: name
 character(len=:),allocatable :: os_type
 character(len=ibug),allocatable :: names(:) 
@@ -97,7 +101,8 @@ character(len=:), allocatable :: version_text(:)
 character(len=:), allocatable :: help_new(:), help_fpm(:), help_run(:), &
                  & help_test(:), help_build(:), help_usage(:), help_runner(:), &
                  & help_text(:), help_install(:), help_help(:), help_update(:), &
-                 & help_list(:), help_list_dash(:), help_list_nodash(:)
+                 & help_list(:), help_list_dash(:), help_list_nodash(:), &
+                 & help_show(:)
 character(len=20),parameter :: manual(*)=[ character(len=20) ::&
 &  ' ',     'fpm',     'new',   'build',  'run',     &
 &  'test',  'runner', 'install', 'update', 'list',   'help',   'version'  ]
@@ -381,6 +386,16 @@ contains
                 fetch_only=lget('fetch-only'), verbose=lget('verbose'), &
                 clean=lget('clean'))
 
+        case('show')
+            call set_args('&
+            & --model F', &
+            & help_show, version_text)
+
+            allocate(fpm_new_settings :: cmd_settings)
+
+            cmd_settings=fpm_show_settings(&
+             & model=lget('model') )
+
         case default
 
             call set_args('&
@@ -463,6 +478,7 @@ contains
    '  build     Compile the package placing results in the "build" directory', &
    '  help      Display help                                                ', &
    '  list      Display this list of subcommand descriptions                ', &
+   '  show      Show model information                                      ', &
    '  new       Create a new Fortran package directory with sample files    ', &
    '  run       Run the local package application programs                  ', &
    '  test      Run the test programs                                       ', &
@@ -963,6 +979,11 @@ contains
     ' 3. Install executables to a custom prefix into the exe directory:', &
     '', &
     '    fpm install --prefix $PWD --bindir exe', &
+    '' ]
+    help_show=[character(len=80) :: &
+    ' fpm(1) subcommand "show"                                              ', &
+    '                                                                       ', &
+    '<USAGE> fpm show --model                                               ', &
     '' ]
     end subroutine set_help
 
