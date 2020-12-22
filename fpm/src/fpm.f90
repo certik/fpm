@@ -2,7 +2,8 @@ module fpm
 use fpm_strings, only: string_t, operator(.in.)
 use fpm_backend, only: build_package
 use fpm_command_line, only: fpm_build_settings, fpm_new_settings, &
-                      fpm_run_settings, fpm_install_settings, fpm_test_settings
+                      fpm_run_settings, fpm_install_settings, fpm_test_settings, &
+                      fpm_show_settings
 use fpm_dependency, only : new_dependency_tree
 use fpm_environment, only: run
 use fpm_filesystem, only: is_dir, join_path, number_of_rows, list_files, exists, basename
@@ -25,7 +26,7 @@ use,intrinsic :: iso_fortran_env, only : stdin=>input_unit,   &
 use fpm_manifest_dependency, only: dependency_config_t
 implicit none
 private
-public :: cmd_build, cmd_run
+public :: cmd_build, cmd_run, cmd_show
 public :: build_model
 
 contains
@@ -206,6 +207,33 @@ else
 endif
 
 end subroutine
+
+
+subroutine cmd_show(settings)
+type(fpm_show_settings), intent(in) :: settings
+type(fpm_build_settings), intent(in) :: bsettings
+type(package_config_t) :: package
+type(fpm_model_t) :: model
+type(error_t), allocatable :: error
+integer :: i
+call get_package_data(package, "fpm.toml", error, apply_defaults=.true.)
+if (allocated(error)) then
+    print '(a)', error%message
+    error stop 1
+end if
+call build_model(model, bsettings, package, error)
+if (allocated(error)) then
+    print '(a)', error%message
+    error stop 1
+end if
+if (settings%model) then
+    call show_model(model)
+else
+    print '(a)', "An option (such as --model) must be supplied"
+    error stop 1
+endif
+end subroutine
+
 
 subroutine cmd_run(settings,test)
     class(fpm_run_settings), intent(in) :: settings

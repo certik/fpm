@@ -42,6 +42,7 @@ public :: fpm_cmd_settings, &
           fpm_run_settings, &
           fpm_test_settings, &
           fpm_update_settings, &
+          fpm_show_settings, &
           get_command_line_settings
 
 type, abstract :: fpm_cmd_settings
@@ -89,7 +90,7 @@ type, extends(fpm_cmd_settings)  :: fpm_update_settings
     logical :: clean
 end type
 
-type, extends(fpm_cmd_settings)  :: fpm_show_settings
+type, extends(fpm_build_settings)  :: fpm_show_settings
     logical :: model
 end type
 
