@@ -26,7 +26,7 @@
 !>
 module fpm_model
 use iso_fortran_env, only: int64
-use fpm_strings, only: string_t, str
+use fpm_strings, only: string_t, str, string_cat
 use fpm_dependency, only: dependency_tree_t
 implicit none
 
@@ -237,19 +237,13 @@ function info_build_target(t) result(s)
     !    type(string_t), allocatable :: link_libraries(:)
     s = s // ", link_libraries=["
     if (allocated(t%link_libraries)) then
-        do i = 1, size(t%link_libraries)
-            s = s // '"' // t%link_libraries(i)%s // '"'
-            if (i < size(t%link_libraries)) s = s // ", "
-        end do
+        s = s // string_cat(t%link_libraries, ", ")
     end if
     s = s // "]"
     !    type(string_t), allocatable :: link_objects(:)
     s = s // ", link_objects=["
     if (allocated(t%link_objects)) then
-        do i = 1, size(t%link_objects)
-            s = s // '"' // t%link_objects(i)%s // '"'
-            if (i < size(t%link_objects)) s = s // ", "
-        end do
+        s = s // string_cat(t%link_objects, ", ")
     end if
     s = s // "]"
     !    logical :: touched = .false.
@@ -274,7 +268,6 @@ function info_build_target_short(t) result(s)
     ! Prints a shortened representation of build_target_t
     type(build_target_t), intent(in) :: t
     character(:), allocatable :: s
-    integer :: i
     s = "build_target_t("
     s = s // 'output_file="' // t%output_file // '"'
     s = s // ", ...)"
@@ -283,7 +276,6 @@ end function
 function info_srcfile(source) result(s)
     type(srcfile_t), intent(in) :: source
     character(:), allocatable :: s
-    integer :: i
     !type srcfile_t
     s = "srcfile_t("
     !    character(:), allocatable :: file_name
@@ -310,10 +302,7 @@ function info_srcfile(source) result(s)
     end select
     !    type(string_t), allocatable :: modules_provided(:)
     s = s // ", modules_provided=["
-    do i = 1, size(source%modules_provided)
-        s = s // '"' // source%modules_provided(i)%s // '"'
-        if (i < size(source%modules_provided)) s = s // ", "
-    end do
+    s = s // string_cat(source%modules_provided, ", ")
     s = s // "]"
     !    integer :: unit_type = FPM_UNIT_UNKNOWN
     s = s // ", unit_type="
@@ -337,24 +326,15 @@ function info_srcfile(source) result(s)
     end select
     !    type(string_t), allocatable :: modules_used(:)
     s = s // ", modules_used=["
-    do i = 1, size(source%modules_used)
-        s = s // '"' // source%modules_used(i)%s // '"'
-        if (i < size(source%modules_used)) s = s // ", "
-    end do
+    s = s // string_cat(source%modules_used, ", ")
     s = s // "]"
     !    type(string_t), allocatable :: include_dependencies(:)
     s = s // ", include_dependencies=["
-    do i = 1, size(source%include_dependencies)
-        s = s // '"' // source%include_dependencies(i)%s // '"'
-        if (i < size(source%include_dependencies)) s = s // ", "
-    end do
+    s = s // string_cat(source%include_dependencies, ", ")
     s = s // "]"
     !    type(string_t), allocatable :: link_libraries(:)
     s = s // ", link_libraries=["
-    do i = 1, size(source%link_libraries)
-        s = s // '"' // source%link_libraries(i)%s // '"'
-        if (i < size(source%link_libraries)) s = s // ", "
-    end do
+    s = s // string_cat(source%link_libraries, ", ")
     s = s // "]"
     !    integer(int64) :: digest
     s = s // ", digest=" // str(source%digest)
@@ -406,10 +386,7 @@ function info_model(model) result(s)
     s = s // ', output_directory="' // model%output_directory // '"'
     !    type(string_t), allocatable :: link_libraries(:)
     s = s // ", link_libraries=["
-    do i = 1, size(model%link_libraries)
-        s = s // '"' // model%link_libraries(i)%s // '"'
-        if (i < size(model%link_libraries)) s = s // ", "
-    end do
+    s = s // string_cat(model%link_libraries, ", ")
     s = s // "]"
     !    type(dependency_tree_t) :: deps
     ! TODO: print `dependency_tree_t` properly, which should become part of the
