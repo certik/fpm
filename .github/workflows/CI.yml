@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [macos-latest]
         gcc_v: [9] # Version of GFortran we want to use.
         rust: [stable]
     env:
