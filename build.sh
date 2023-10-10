@@ -2,7 +2,12 @@
 
 set -ex
 
-wget -O fpm https://github.com/fortran-lang/fpm/releases/download/v0.7.0/fpm-0.7.0-linux-x86_64
+if [[ $OSTYPE == 'darwin'* ]]; then
+    curl -o fpm https://github.com/fortran-lang/fpm/releases/download/v0.7.0/fpm-0.7.0-macos-x86_64
+else
+    wget -O fpm https://github.com/fortran-lang/fpm/releases/download/v0.7.0/fpm-0.7.0-linux-x86_64
+fi
+
 chmod +x fpm
 ./fpm build --show-model
 
