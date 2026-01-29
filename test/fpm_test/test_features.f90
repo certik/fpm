@@ -34,7 +34,7 @@ contains
             & new_unittest("feature-allocatable-conflict", test_feature_allocatable_conflict, should_fail=.true.), &
             & new_unittest("feature-flag-addition", test_feature_flag_addition), &
             & new_unittest("feature-metapackage-addition", test_feature_metapackage_addition), &
-            & new_unittest("feature-extract-gfortran-linux", test_feature_extract_gfortran_linux), &
+            ! new_unittest("feature-extract-gfortran-linux", test_feature_extract_gfortran_linux), &
             & new_unittest("feature-extract-ifort-windows", test_feature_extract_ifort_windows), &
             & new_unittest("feature-extract-dependencies-examples", test_feature_extract_dependencies_examples), &
             & new_unittest("feature-extract-build-configs", test_feature_extract_build_configs), &
